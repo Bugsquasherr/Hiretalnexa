@@ -162,10 +162,10 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(30,64,216,.14)
 
 @media (prefers-reduced-motion:no-preference){
 @keyframes fly{0%{opacity:0;transform:translate3d(var(--x0),var(--y0),0) rotate(var(--r0)) scale(.75)}18%{opacity:var(--o)}78%{opacity:var(--o)}100%{opacity:0;transform:translate3d(var(--x1),var(--y1),0) rotate(var(--r1)) scale(1.15)}}
-@keyframes twinkle{0%,100%{opacity:.08}50%{opacity:.85}}
+@keyframes twinkle{0%,100%{opacity:0}50%{opacity:.8}}
 .space{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .space b{position:absolute;left:0;top:0;white-space:nowrap;font-weight:800;letter-spacing:.02em;will-change:transform;animation:fly linear infinite}
-.space i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;animation:twinkle 3s ease-in-out infinite}
+.space i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;animation:twinkle 10s ease-in-out infinite}
 }
 </style>
 </head>
@@ -362,7 +362,7 @@ cf.addEventListener('submit',function(e){
  var cols=['#ffffff','#4fe3b8','#8fb0ff'],n=window.innerWidth<700?10:22;
  function R(a,b){return a+Math.random()*(b-a)}
  function place(e){
-  var W=hero.offsetWidth||1100,H=hero.offsetHeight||620,d=Math.random(),size=11+d*17,dur=R(14,26),dir=Math.random()<.5?1:-1;
+  var W=hero.offsetWidth||1100,H=hero.offsetHeight||620,d=Math.random(),size=11+d*17,dur=R(26,42),dir=Math.random()<.5?1:-1;
   var x=R(0,W),y=R(0,H),r0=R(-35,35);
   e.textContent=words[Math.floor(Math.random()*words.length)];
   e.style.fontSize=size+'px';e.style.color=cols[Math.floor(Math.random()*cols.length)];
@@ -375,13 +375,13 @@ cf.addEventListener('submit',function(e){
  }
  for(var k=0;k<n;k++){
   var e=document.createElement('b');place(e);
-  e.style.animationDelay=(-Math.random()*20)+'s';
+  e.style.animationDelay=(-Math.random()*30)+'s';
   e.addEventListener('animationiteration',function(ev){place(ev.currentTarget)});
   sp.appendChild(e);
  }
  for(var j=0;j<28;j++){
   var s=document.createElement('i');
-  s.style.left=R(0,100)+'%';s.style.top=R(0,100)+'%';s.style.animationDelay=(-Math.random()*4)+'s';s.style.animationDuration=R(2.5,5)+'s';
+  s.style.left=R(0,100)+'%';s.style.top=R(0,100)+'%';s.style.animationDelay=(-Math.random()*12)+'s';s.style.animationDuration=R(8,14)+'s';
   s.addEventListener('animationiteration',function(ev){var t=ev.currentTarget;t.style.left=R(0,100)+'%';t.style.top=R(0,100)+'%'});
   sp.appendChild(s);
  }
