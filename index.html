@@ -119,6 +119,54 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .b:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
 [hidden]{display:none!important}
 input[type=file]{padding:10px}
+
+/* ===== Animations (disabled for visitors who prefer reduced motion) ===== */
+@media (prefers-reduced-motion:no-preference){
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,-30px) scale(1.12)}}
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;left:-140px;top:-120px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(46,230,176,.28),transparent 70%);animation:drift 14s ease-in-out infinite;pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{animation:fadeUp .9s ease backwards}
+.hero p{animation:fadeUp .9s ease .15s backwards}
+.hero .row{animation:fadeUp .9s ease .3s backwards}
+.js .rv{opacity:0}
+.rv.in{opacity:1;animation:fadeUp .75s ease backwards}
+.card,.step,.big,details{transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease,border-color .3s ease}
+.card:hover{transform:translateY(-10px);box-shadow:0 22px 44px rgba(30,64,216,.18);border-color:#9db4ff}
+.step:hover{transform:translateY(-8px) rotate(-.6deg);box-shadow:0 18px 38px rgba(15,159,122,.2);border-color:#7fd8bd}
+.big:hover{transform:translateY(-8px) scale(1.015);box-shadow:0 26px 50px rgba(11,26,51,.3)}
+details:hover{transform:translateX(6px);border-color:#9db4ff;box-shadow:0 10px 24px rgba(30,64,216,.1)}
+.card h3,.step h3{transition:color .3s}
+.card:hover h3{color:var(--blue)}
+.step:hover h3{color:var(--green)}
+.marquee{padding:16px 0}
+.track span{transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,background .3s,color .3s}
+.track span:hover{transform:translateY(-6px) scale(1.07);box-shadow:0 12px 22px rgba(30,64,216,.22);background:var(--blue);color:#fff}
+.b{transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,background .25s}
+.b:not(:disabled):hover{transform:translateY(-4px)}
+.b:not(:disabled):active{transform:translateY(0)}
+.b.hire:not(:disabled):hover{box-shadow:0 14px 28px rgba(30,64,216,.4)}
+.b.green:hover{box-shadow:0 14px 28px rgba(15,159,122,.45)}
+.logo{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.logo:hover{transform:scale(1.05)}
+.pill a{transition:transform .25s,background .25s,color .25s}
+.pill a:hover{transform:translateY(-2px)}
+.strip span{display:inline-block;transition:transform .25s}
+.strip span:hover{transform:translateY(-3px)}
+input,select,textarea{transition:border-color .25s,box-shadow .25s}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(30,64,216,.14)}
+.flinks a svg{transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .3s}
+.flinks a:hover svg{transform:translateY(-3px) scale(1.12)}
+}
+
+@media (prefers-reduced-motion:no-preference){
+@keyframes fly{0%{opacity:0;transform:translate3d(var(--x0),var(--y0),0) rotate(var(--r0)) scale(.75)}18%{opacity:var(--o)}78%{opacity:var(--o)}100%{opacity:0;transform:translate3d(var(--x1),var(--y1),0) rotate(var(--r1)) scale(1.15)}}
+@keyframes twinkle{0%,100%{opacity:.08}50%{opacity:.85}}
+.space{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.space b{position:absolute;left:0;top:0;white-space:nowrap;font-weight:800;letter-spacing:.02em;will-change:transform;animation:fly linear infinite}
+.space i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;animation:twinkle 3s ease-in-out infinite}
+}
 </style>
 </head>
 <body>
@@ -295,6 +343,49 @@ cf.addEventListener('submit',function(e){
   cfs.style.color='#b42318';cfs.textContent='Sorry, something went wrong. Please email us at hr@hiretalnexa.com.';
  }).finally(function(){cfb.textContent='Send message';check()});
 });
+
+(function(){
+ if(!window.IntersectionObserver||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ document.documentElement.classList.add('js');
+ var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+ document.querySelectorAll('.card,.step,.big,details,section h2,.sub,.strip span').forEach(function(el){
+  var i=Array.prototype.indexOf.call(el.parentNode.children,el)%5;
+  el.classList.add('rv');el.style.animationDelay=(i*90)+'ms';io.observe(el);
+ });
+})();
+
+(function(){
+ var hero=document.querySelector('.hero');
+ if(!hero||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ var sp=document.createElement('div');sp.className='space';sp.setAttribute('aria-hidden','true');hero.insertBefore(sp,hero.firstChild);
+ var words=['Java','Python','GCP','AWS','Azure','Kubernetes','Databricks','Kafka','SAP','DevOps','React','Node.js','Appium','Playwright','TypeScript','PySpark','Hadoop','SQL','AI / ML','Data Engineer','Quarkus','ServiceNow','Appian','ClickHouse','.NET','C++','Go','Android','Flowable','Dynatrace'];
+ var cols=['#ffffff','#4fe3b8','#8fb0ff'],n=window.innerWidth<700?10:22;
+ function R(a,b){return a+Math.random()*(b-a)}
+ function place(e){
+  var W=hero.offsetWidth||1100,H=hero.offsetHeight||620,d=Math.random(),size=11+d*17,dur=R(14,26),dir=Math.random()<.5?1:-1;
+  var x=R(0,W),y=R(0,H),r0=R(-35,35);
+  e.textContent=words[Math.floor(Math.random()*words.length)];
+  e.style.fontSize=size+'px';e.style.color=cols[Math.floor(Math.random()*cols.length)];
+  e.style.filter='blur('+((1-d)*1.4).toFixed(1)+'px)';
+  e.style.setProperty('--o',(.12+d*.22).toFixed(2));
+  e.style.setProperty('--x0',x+'px');e.style.setProperty('--y0',y+'px');
+  e.style.setProperty('--x1',(x+dir*R(160,420))+'px');e.style.setProperty('--y1',(y+R(-140,140))+'px');
+  e.style.setProperty('--r0',r0+'deg');e.style.setProperty('--r1',(r0+(Math.random()<.5?1:-1)*R(40,160))+'deg');
+  e.style.animationDuration=dur+'s';
+ }
+ for(var k=0;k<n;k++){
+  var e=document.createElement('b');place(e);
+  e.style.animationDelay=(-Math.random()*20)+'s';
+  e.addEventListener('animationiteration',function(ev){place(ev.currentTarget)});
+  sp.appendChild(e);
+ }
+ for(var j=0;j<28;j++){
+  var s=document.createElement('i');
+  s.style.left=R(0,100)+'%';s.style.top=R(0,100)+'%';s.style.animationDelay=(-Math.random()*4)+'s';s.style.animationDuration=R(2.5,5)+'s';
+  s.addEventListener('animationiteration',function(ev){var t=ev.currentTarget;t.style.left=R(0,100)+'%';t.style.top=R(0,100)+'%'});
+  sp.appendChild(s);
+ }
+})();
 </script>
 </body>
 </html>
