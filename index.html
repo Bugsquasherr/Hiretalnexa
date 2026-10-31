@@ -101,7 +101,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .track span:nth-child(3n+1){color:var(--blue)}.track span:nth-child(3n+2){color:var(--green)}
 @keyframes slide{to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;padding:0 24px}}
-.logo{background:none!important;padding:0!important;line-height:0;box-shadow:none}.logo svg{display:block;height:46px;width:auto}@media(max-width:520px){.logo svg{height:38px}}
+.logo{background:none!important;padding:0!important;line-height:0;box-shadow:none}.logo svg{display:block;height:50px;width:auto}@media(max-width:520px){.logo svg{height:34px}}
 .reach{display:grid;gap:14px;margin-top:30px}
 .reach a{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 18px}
 .reach a:hover{background:rgba(255,255,255,.15)}
@@ -167,16 +167,77 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(30,64,216,.14)
 .space b{position:absolute;left:0;top:0;white-space:nowrap;font-weight:800;letter-spacing:.02em;will-change:transform;animation:fly linear infinite}
 .space i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;animation:twinkle 10s ease-in-out infinite}
 }
+
+#resume-score .rs{background:#fff;color:var(--text);border-radius:18px;padding:34px;max-width:900px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.rs-in{display:grid;gap:16px}
+.rs-in textarea{min-height:110px}
+#rsh{font-weight:600;font-size:.9rem}
+#rss{min-height:1.4em;font-weight:600;font-size:.95rem}
+.rs-top{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-top:28px;padding-top:28px;border-top:1px solid var(--line)}
+.gauge{position:relative;width:150px;height:150px;flex:none}
+.gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+.gauge circle{fill:none;stroke-width:10}
+.gbg{stroke:#e8ecf5}
+.gfg{stroke-linecap:round;stroke-dasharray:326.7;stroke-dashoffset:326.7;transition:stroke-dashoffset 1.3s ease-out,stroke .3s}
+.gnum{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.gnum b{font-size:2.6rem;line-height:1;font-weight:800}
+.gnum small{color:var(--muted);font-size:.8rem}
+.rs h4{margin:26px 0 12px;font-size:1.05rem}
+.bd-row{display:grid;grid-template-columns:170px 1fr 56px;gap:12px;align-items:center;margin-bottom:10px;font-size:.95rem}
+.bd-row em{font-style:normal;font-weight:700;text-align:right}
+.sbar{height:10px;background:#e8ecf5;border-radius:99px;overflow:hidden}
+.sbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#1e40d8,#0f9f7a);transition:width 1s ease-out}
+.rs ul{margin-left:20px;color:var(--muted)}
+.rs li{margin-bottom:6px}
+.kw{display:flex;flex-wrap:wrap;gap:8px}
+.kw span{padding:5px 12px;border-radius:99px;font-size:.88rem;font-weight:600;background:#e3f6ef;color:#0b6e57}
+.kw.miss span{background:#fdeaea;color:#b42318}
+.rs-cta{margin-top:28px;padding:22px;border-radius:14px;background:var(--soft);display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+@media(max-width:560px){#resume-score .rs{padding:22px}.bd-row{grid-template-columns:1fr 56px}.bd-row .sbar{grid-column:1/-1;order:3}}
+@media(prefers-reduced-motion:reduce){.gfg,.sbar i{transition:none}}
+
+
+.up{position:relative;display:flex;align-items:center;gap:16px;padding:20px 22px;border:2px dashed #b4c3ea;border-radius:14px;background:#f5f8ff;color:var(--blue);cursor:pointer;font-weight:400;transition:border-color .25s,background .25s,box-shadow .25s}
+.up:hover,.up.drag{border-color:var(--blue);background:#ecf1ff;box-shadow:0 8px 22px rgba(30,64,216,.12)}
+.up:focus-within{outline:3px solid #7aa2ff;outline-offset:2px}
+.up input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;padding:0;border:0}
+.up svg{flex:none}
+.ut{display:block;color:var(--muted);font-size:.95rem;line-height:1.4;min-width:0}
+.ut b{color:var(--text);font-weight:700;word-break:break-all}
+.ut small{display:block;color:var(--muted);font-size:.82rem;margin-top:2px}
+.up.has{border-style:solid;border-color:#0f9f7a;background:#effaf6;color:#0f9f7a}
+.up.has .u2{display:none}
+
+/* header fit (5 menu items) */
+.bar{gap:12px}
+.pill{gap:2px;padding:6px}
+.pill a{padding:10px 14px;font-size:.93rem;white-space:nowrap}
+.cta .b{white-space:nowrap;padding:12px 18px}
+@media(max-width:1180px){
+ .pill{display:none}.menu{display:block}
+ .pill.open{display:flex;position:absolute;top:84px;left:16px;right:16px;flex-direction:column;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.15);z-index:30}
+}
+@media(max-width:520px){.cta .hire span{display:none}.cta .b{padding:11px 14px}}
+.nt{font-style:normal;font-size:.62rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:#0f9f7a;color:#fff;padding:2px 7px;border-radius:99px;margin-left:6px;vertical-align:middle}
+
+.pill a{padding:10px 12px}
+@media(max-width:1260px){
+ .pill{display:none}.menu{display:block}
+ .pill.open{display:flex;position:absolute;top:84px;left:16px;right:16px;flex-direction:column;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.15);z-index:30}
+}
+header .wrap{max-width:1360px}
 </style>
 </head>
 <body>
 <header>
  <div class="wrap bar">
-  <a class="logo" href="#top" aria-label="Hiretalnexa home"><svg viewBox="0 0 218 52" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hiretalnexa - Talent, Connection, Growth"><rect x="2" y="3" width="46" height="46" rx="12" fill="#04133a"/><rect x="6.5" y="7.5" width="37" height="37" rx="9" fill="none" stroke="#fff" stroke-width="2.2"/><rect x="14" y="14" width="6" height="24" rx="2.5" fill="#fff"/><rect x="30" y="14" width="6" height="24" rx="2.5" fill="#fff"/><rect x="18" y="23" width="14" height="6" rx="2" fill="#2f6bff"/><text x="58" y="29" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="800" letter-spacing="-.5"><tspan fill="#0b1a33">Hire</tspan><tspan fill="#1e40d8" dx="5">Talnexa</tspan></text><text x="59" y="44" font-family="Inter,Arial,sans-serif" font-size="7.4" font-weight="600" fill="#5b677d" textLength="154" lengthAdjust="spacing">TALENT · CONNECTION · GROWTH</text></svg></a>
+  <a class="logo" href="#top" aria-label="Hiretalnexa home"><svg viewBox="0 0 276 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hiretalnexa - Talent, Connection, Growth"><g transform="translate(0,8) scale(0.4444)"><path fill="#0b1a33" fill-rule="evenodd" d="M85.10,97.80 L86.40,97.75 L87.10,97.60 L87.52,97.30 L87.65,96.80 L87.53,96.40 L87.30,96.16 L85.10,95.14 L84.21,94.50 L83.50,93.74 L82.71,92.30 L82.39,90.70 L82.36,30.70 L82.45,29.70 L82.70,29.40 L83.20,29.59 L83.71,30.10 L88.08,36.60 L90.73,40.30 L103.06,58.40 L106.60,63.40 L110.07,68.60 L129.00,96.06 L129.60,96.66 L130.30,96.93 L131.00,96.83 L131.61,96.30 L131.81,95.80 L131.90,95.10 L131.90,71.70 L131.70,68.90 L131.70,9.90 L131.86,8.80 L132.19,7.60 L132.50,6.82 L133.00,5.99 L133.60,5.30 L134.60,4.59 L136.98,3.70 L137.21,3.20 L136.98,2.60 L136.50,2.24 L136.00,2.14 L126.70,2.15 L125.90,2.25 L125.40,2.45 L125.10,2.75 L124.95,3.10 L124.97,3.40 L125.20,3.70 L127.30,4.44 L128.33,5.10 L128.83,5.60 L129.50,6.52 L129.78,7.10 L130.07,8.30 L130.23,9.70 L130.29,67.50 L130.14,68.50 L129.70,68.93 L129.40,68.85 L128.99,68.40 L108.90,38.88 L105.40,33.97 L93.77,16.80 L89.49,10.70 L85.52,4.80 L85.34,4.30 L85.41,3.90 L85.64,3.50 L86.10,3.19 L86.80,3.02 L90.00,3.04 L93.60,3.37 L96.80,4.21 L99.30,5.20 L101.27,6.30 L103.69,8.00 L105.20,9.37 L106.60,10.91 L107.70,12.34 L108.71,14.00 L109.73,16.10 L110.60,18.50 L111.70,23.90 L112.00,24.50 L112.20,24.68 L112.50,24.75 L113.00,24.45 L113.29,23.70 L113.43,19.00 L113.38,3.40 L113.17,2.30 L112.60,1.68 L111.90,1.43 L110.90,1.32 L37.80,1.32 L36.80,1.46 L36.20,1.76 L35.76,2.40 L35.55,3.70 L35.55,19.60 L35.71,23.60 L36.00,24.30 L36.40,24.54 L36.80,24.38 L37.03,24.00 L37.58,20.80 L38.24,18.30 L39.21,15.80 L40.29,13.70 L41.47,11.90 L43.40,9.59 L44.70,8.38 L46.28,7.20 L49.40,5.34 L51.70,4.36 L55.30,3.41 L57.10,3.18 L58.10,3.35 L59.30,3.93 L61.10,4.52 L62.30,5.35 L63.39,6.80 L63.80,8.00 L63.95,10.00 L63.95,47.30 L63.83,48.30 L63.60,48.67 L63.20,48.91 L62.30,48.99 L23.80,49.01 L23.23,48.90 L22.85,48.70 L22.51,48.20 L22.40,47.30 L22.41,10.00 L22.49,8.50 L22.65,7.70 L23.00,6.80 L23.85,5.60 L24.30,5.18 L25.40,4.50 L27.32,3.80 L27.64,3.40 L27.60,3.03 L27.34,2.70 L26.90,2.42 L25.90,2.26 L2.80,2.27 L2.00,2.39 L1.46,2.70 L1.19,3.20 L1.23,3.50 L1.40,3.73 L3.50,4.52 L4.40,5.01 L4.90,5.40 L5.70,6.37 L6.10,7.20 L6.53,8.60 L6.67,10.90 L6.63,90.50 L6.40,92.07 L5.98,93.10 L5.50,93.90 L4.80,94.62 L4.10,95.16 L3.30,95.62 L2.00,96.10 L1.60,96.36 L1.36,97.00 L1.50,97.42 L2.10,97.75 L3.00,97.84 L26.20,97.85 L27.02,97.70 L27.52,97.30 L27.53,96.80 L27.20,96.27 L25.20,95.44 L24.20,94.71 L23.52,94.00 L22.83,92.80 L22.50,91.40 L22.42,89.00 L22.39,51.90 L22.50,51.50 L22.70,51.27 L23.30,51.02 L23.80,50.97 L62.70,50.96 L63.30,51.03 L63.70,51.25 L63.90,51.55 L63.97,52.00 L63.89,91.40 L63.48,93.00 L62.60,94.30 L61.60,95.02 L59.90,95.65 L59.28,96.00 L58.83,96.60 L58.83,97.30 L59.30,97.70 L60.50,97.84 L85.10,97.80Z"/></g><rect x="70.8" y="12" width="1.2" height="37" fill="#d3dae8"/><text x="81.8" y="33" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="800" letter-spacing="-.6"><tspan fill="#0b1a33">Hire</tspan><tspan fill="#1e40d8" dx="6">Talnexa</tspan></text><text x="82.8" y="50" font-family="Inter,Arial,sans-serif" font-size="8.2" font-weight="600" fill="#5b667a" textLength="178" lengthAdjust="spacing">TALENT · CONNECTION · GROWTH</text></svg></a>
   <nav class="pill" id="nav" aria-label="Main">
-   <a href="#services">Hiring Services</a>
+   <a href="#services">Services</a>
    <a href="#skills">Profiles</a>
-   <a href="#process">How We Work</a>
+   <a href="#process">Process</a>
+   <a href="resume-design.html">Resume Design <em class="nt">Free</em></a>
+   <a href="#resume-score">Resume Check <em class="nt">Free</em></a>
    <a href="#faq">FAQ</a>
   </nav>
   <div class="cta">
@@ -240,6 +301,33 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(30,64,216,.14)
  </div>
 </section>
 
+<section id="resume-score" style="background:linear-gradient(135deg,#0b1a33,#16337a)">
+ <div class="wrap">
+  <div class="kicker" style="color:#4fe3b8">Free tool for candidates</div>
+  <h2 style="color:#fff">Check your resume score</h2>
+  <p class="sub" style="color:#c3cee4">Upload your resume as a PDF to get an instant score and tips to improve it. Add a job description to see how well you match. Your file is checked in your browser and is never uploaded or stored.</p>
+  <div class="rs">
+   <div class="rs-in">
+    <label>Your resume<span class="up"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8.5a4 4 0 0 1 .5 7.97"/><path d="M12 12v8"/><path d="m8.5 15.5 3.5-3.5 3.5 3.5"/></svg><span class="ut"><b class="u1">Click to upload</b><span class="u2"> or drag and drop</span><small>PDF only, max 5 MB</small></span><input type="file" id="rsf" accept="application/pdf,.pdf"></span><span id="rsh"></span></label>
+    <label>Job description (optional, to see your job match score)<textarea id="rsj" placeholder="Paste a job description here to see how well your resume matches it"></textarea></label>
+    <button class="b green" id="rsb" type="button" disabled>Check my score</button>
+    <p id="rss" role="status" aria-live="polite"></p>
+   </div>
+   <div id="rsr" hidden>
+    <div class="rs-top">
+     <div class="gauge"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="gbg" cx="60" cy="60" r="52"/><circle class="gfg" id="gfg" cx="60" cy="60" r="52"/></svg><div class="gnum"><b id="gn">0</b><small>out of 100</small></div></div>
+     <div><h3 id="gl" style="font-size:1.5rem"></h3><p id="gd" style="color:var(--muted);max-width:480px"></p></div>
+    </div>
+    <h4>Score breakdown</h4><div id="bd"></div>
+    <h4>How to improve</h4><ul id="tp"></ul>
+    <div id="jd" hidden><h4>Job match: <span id="jm"></span></h4><p style="color:var(--muted);margin-bottom:8px">Found in your resume</p><div class="kw" id="kf"></div><p style="color:var(--muted);margin:14px 0 8px">Missing from your resume</p><div class="kw miss" id="km"></div></div>
+    <div class="rs-cta"><div><b>Want help finding your next IT role?</b><br><span style="color:var(--muted);font-size:.95rem">Share your details and our team will get in touch.</span></div><a class="b hire" href="#contact">Share your details</a></div>
+    <p style="color:var(--muted);font-size:.85rem;margin-top:16px">This score is an estimate based on common resume practices. It is not a guarantee of any hiring result.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
 <section class="soft" id="candidates">
  <div class="wrap split">
   <div class="big a">
@@ -281,7 +369,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(30,64,216,.14)
    <label>I am a
     <select name="type" required><option value="" disabled selected>Select one</option><option>Company looking to hire</option><option>Candidate looking for a job</option><option>Other</option></select>
    </label>
-   <label id="rw" hidden>Upload your resume (PDF, max 2 MB)<input type="file" id="rf" accept="application/pdf,.pdf"><span id="rh" style="font-weight:600;font-size:.9rem"></span></label>
+   <label id="rw" hidden>Upload your resume<span class="up"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8.5a4 4 0 0 1 .5 7.97"/><path d="M12 12v8"/><path d="m8.5 15.5 3.5-3.5 3.5 3.5"/></svg><span class="ut"><b class="u1">Click to upload</b><span class="u2"> or drag and drop</span><small>PDF only, max 2 MB</small></span><input type="file" id="rf" accept="application/pdf,.pdf"></span><span id="rh" style="font-weight:600;font-size:.9rem"></span></label>
    <label>Message<textarea name="message" required></textarea></label>
    <p style="font-size:.88rem;color:var(--muted);margin:-4px 0 0">All fields are required.</p>
    <button class="b hire" id="cfb" type="submit" style="justify-content:center" disabled>Send message</button>
@@ -294,7 +382,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(30,64,216,.14)
 <footer>
  <div class="wrap">
   <span>&copy; <span id="y">2026</span> Hiretalnexa. All rights reserved.</span>
-  <span class="flinks"><a href="mailto:hr@hiretalnexa.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>hr@hiretalnexa.com</a><a href="https://www.instagram.com/hiretalnexa.official/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>Instagram</a></span>
+  <span class="flinks"><a href="resume-design.html">Resume Design</a><a href="#resume-score">Resume Check</a><a href="mailto:hr@hiretalnexa.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>hr@hiretalnexa.com</a><a href="https://www.instagram.com/hiretalnexa.official/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>Instagram</a></span>
  </div>
 </footer>
 
@@ -315,17 +403,17 @@ function check(){
  if(isCand())ok=ok&&fileOk;
  cfb.disabled=!ok;
 }
-function resetFile(){rf.value='';fileOk=false;rh.textContent='';rh.style.color=''}
+function resetFile(){rf.value='';upSet(rf,'');fileOk=false;rh.textContent='';rh.style.color=''}
 cf.addEventListener('input',check);
 ty.addEventListener('change',function(){rw.hidden=!isCand();if(!isCand())resetFile();check()});
 rf.addEventListener('change',function(){
  fileOk=false;rh.textContent='';var f=rf.files[0];
  if(!f){check();return}
- if(f.size>2*1024*1024){rh.style.color='#b42318';rh.textContent='File is too large. Maximum size is 2 MB.';rf.value='';check();return}
+ if(f.size>2*1024*1024){rh.style.color='#b42318';rh.textContent='File is too large. Maximum size is 2 MB.';rf.value='';upSet(rf,'');check();return}
  f.slice(0,5).arrayBuffer().then(function(b){
   var h=String.fromCharCode.apply(null,new Uint8Array(b));
-  if(h.indexOf('%PDF')===0){fileOk=true;rh.style.color='#0f7a5c';rh.textContent='Selected: '+f.name}
-  else{rh.style.color='#b42318';rh.textContent='Please upload a PDF file.';rf.value=''}
+  if(h.indexOf('%PDF')===0){fileOk=true;upSet(rf,f.name);rh.style.color='#0f7a5c';rh.textContent='File ready to send'}
+  else{rh.style.color='#b42318';rh.textContent='Please upload a PDF file.';rf.value='';upSet(rf,'')}
   check();
  });
 });
@@ -386,6 +474,150 @@ cf.addEventListener('submit',function(e){
   sp.appendChild(s);
  }
 })();
+/*RS-PURE-START*/
+var RS_SKILLS=['java','python','javascript','typescript','c++','c#','.net','golang','rust','php','ruby','kotlin','swift','scala','sql','nosql','mongodb','postgresql','mysql','oracle','redis','kafka','spark','pyspark','hadoop','hive','databricks','snowflake','airflow','datastage','etl','aws','azure','gcp','google cloud','kubernetes','docker','terraform','ansible','jenkins','ci/cd','devops','git','linux','react','angular','vue','node.js','spring','spring boot','quarkus','microservices','restful','rest api','api','graphql','android','ios','flutter','appium','selenium','playwright','cypress','junit','test automation','machine learning','deep learning','nlp','computer vision','tensorflow','pytorch','power bi','tableau','sap','servicenow','salesforce','appian','flowable','dynatrace','clickhouse','data modelling','data engineering','agile','scrum','jira'];
+var RS_STOP=['the','and','for','with','you','are','our','will','have','has','this','that','from','your','who','all','can','able','such','not','but','any','etc','their','they','them','into','per','via','job','role','work','team','years','year','experience','skills','strong','good','must','should','required','preferred','knowledge','ability','including','responsibilities','using','across','new','more','other','also','looking','candidate','candidates','position','company','working','within','about','what','when','where','which','while','been','being','than','then','these','those','well','both','each','make','need','needs','please','apply','plus','level','related','based','like','excellent','communication','develop','design','support','ensure','understanding','minimum','least','hands','proven'];
+var RS_VERBS=['led','developed','built','designed','implemented','managed','created','improved','reduced','increased','delivered','optimized','optimised','automated','migrated','deployed','launched','analyzed','analysed','coordinated','mentored','achieved','resolved','integrated','configured','maintained','tested','architected','collaborated','streamlined'];
+var rsCache={};
+function rsHas(text,term){var re=rsCache[term];if(!re){re=new RegExp('(^|[^a-z0-9+#])'+term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'($|[^a-z0-9+#])');rsCache[term]=re}return re.test(text)}
+function rsScore(lines,pages){
+ var text=lines.join('\n'),low=text.toLowerCase(),words=(text.match(/\S+/g)||[]).length,parts=[],tips=[];
+ function add(n,g,m){parts.push({name:n,got:Math.round(g),max:m})}
+ var hasE=/[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}/i.test(text);
+ var hasP=(text.match(/\+?\d[\d\s\-().]{8,}\d/g)||[]).some(function(m){return m.replace(/\D/g,'').length>=10});
+ var hasL=/linkedin\.com|github\.com|gitlab\.com|behance\.net|portfolio/i.test(text);
+ add('Contact details',(hasE?5:0)+(hasP?5:0)+(hasL?5:0),15);
+ if(!hasE)tips.push('Add a professional email address at the top of your resume.');
+ if(!hasP)tips.push('Add a phone number so recruiters can reach you quickly.');
+ if(!hasL)tips.push('Add a LinkedIn or GitHub link to show your profile and work.');
+ var heads=lines.filter(function(l){return l.length<=45}).map(function(l){return l.toLowerCase().replace(/[^a-z& ]/g,' ').replace(/\s+/g,' ').trim()});
+ function sec(re){return heads.some(function(h){return re.test(h)})}
+ var sSum=sec(/^(professional |career |executive )?(summary|profile|objective)|^about me/);
+ var sSk=sec(/^(technical |key |core |it )?skills|^technologies|^tech stack|^competencies/);
+ var sEx=sec(/^(work |professional |employment |relevant )?(experience|history)|^employment|^career history/);
+ var sEd=sec(/^education|^academic|^qualifications/);
+ add('Key sections',(sSum?5:0)+(sSk?7:0)+(sEx?8:0)+(sEd?5:0),25);
+ if(!sSum)tips.push('Add a short Summary section (2 to 3 lines) about who you are and what you do best.');
+ if(!sSk)tips.push('Add a clear Skills section listing your tools and technologies.');
+ if(!sEx)tips.push('Add an Experience section with your roles, companies and dates.');
+ if(!sEd)tips.push('Add an Education section with your degree and year.');
+ var found=RS_SKILLS.filter(function(k){return rsHas(low,k)});
+ add('Skills & keywords',Math.min(20,found.length*2),20);
+ if(found.length<10)tips.push('Mention more of the tools and technologies you use. We found '+found.length+' common skills; aim for 10 or more that are true for you.');
+ var metrics=(text.match(/\d+(\.\d+)?\s?%|[$\u20B9]\s?\d|\b\d+\s?(x|k|lakh|lakhs|crore|million|users|clients|projects|customers|servers|applications|apps|ms|seconds)\b/gi)||[]).length;
+ var verbs=RS_VERBS.filter(function(v){return rsHas(low,v)}).length;
+ add('Impact & results',Math.min(8,metrics*2)+Math.min(7,verbs),15);
+ if(metrics<4)tips.push('Add measurable results, for example "reduced load time by 30%" or "managed a team of 5".');
+ if(verbs<7)tips.push('Start your bullet points with action verbs such as built, led, improved, automated or delivered.');
+ var lenPts=(words>=250&&words<=900)?10:((words>=150&&words<250)||(words>900&&words<=1200))?6:2;
+ var pagePts=pages<=2?5:(pages===3?3:1);
+ add('Length & format',lenPts+pagePts,15);
+ if(words<250)tips.push('Your resume looks short ('+words+' words). Add more detail about your work and projects.');
+ if(words>900)tips.push('Your resume looks long ('+words+' words). Keep it focused on your most relevant experience.');
+ if(pages>2)tips.push('Try to keep your resume to 1 or 2 pages.');
+ var bullets=lines.filter(function(l){return /^[\u2022\u25CF\u25AA\u00B7\u2013*\-]\s?\S/.test(l)}).length;
+ var fp=(low.match(/\b(i|my|me)\b/g)||[]).length;
+ var years=(text.match(/\b(19|20)\d{2}\b/g)||[]).length;
+ add('Readability',(bullets>=5?5:bullets>=2?3:0)+(fp<=4?3:fp<=10?1:0)+(years>=2?2:0),10);
+ if(bullets<5)tips.push('Use bullet points to make achievements easy to scan.');
+ if(fp>4)tips.push('Avoid words like "I" and "my". Start sentences with action verbs instead.');
+ if(years<2)tips.push('Include start and end dates for each role and your education.');
+ var total=parts.reduce(function(a,p){return a+p.got},0);
+ return {total:total,parts:parts,tips:tips,skills:found,words:words,pages:pages};
+}
+function rsMatch(jd,resumeLow){
+ var l=jd.toLowerCase(),kw=RS_SKILLS.filter(function(k){return rsHas(l,k)});
+ var freq={};(l.match(/[a-z][a-z+#.\-]{3,}/g)||[]).forEach(function(w){w=w.replace(/[.\-]+$/,'');if(w.length>3&&RS_STOP.indexOf(w)<0)freq[w]=(freq[w]||0)+1});
+ Object.keys(freq).filter(function(w){return freq[w]>=2&&kw.indexOf(w)<0}).sort(function(a,b){return freq[b]-freq[a]}).slice(0,12).forEach(function(w){kw.push(w)});
+ kw=kw.slice(0,30);
+ var hit=kw.filter(function(k){return rsHas(resumeLow,k)}),miss=kw.filter(function(k){return rsHas(resumeLow,k)===false});
+ return {total:kw.length,hit:hit,miss:miss,pct:kw.length?Math.round(hit.length/kw.length*100):0};
+}
+/*RS-PURE-END*/
+
+(function(){
+ var f=document.getElementById('rsf');if(!f)return;
+ var btn=document.getElementById('rsb'),hint=document.getElementById('rsh'),st=document.getElementById('rss'),res=document.getElementById('rsr'),jdEl=document.getElementById('rsj');
+ var ok=false,PDFJS='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',WORKER='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+ function loadLib(){return new Promise(function(a,b){if(window.pdfjsLib){a(window.pdfjsLib);return}var s=document.createElement('script');s.src=PDFJS;s.onload=function(){window.pdfjsLib.GlobalWorkerOptions.workerSrc=WORKER;a(window.pdfjsLib)};s.onerror=function(){b(new Error('lib'))};document.head.appendChild(s)})}
+ function extract(file){
+  return loadLib().then(function(lib){return file.arrayBuffer().then(function(buf){return lib.getDocument({data:buf,verbosity:0}).promise})}).then(function(doc){
+   var lines=[],chain=Promise.resolve(),max=Math.min(doc.numPages,6);
+   for(var p=1;p<=max;p++){(function(n){chain=chain.then(function(){return doc.getPage(n)}).then(function(pg){return pg.getTextContent()}).then(function(tc){
+    var cur='',lastY=null;
+    tc.items.forEach(function(it){var y=it.transform[5];if(lastY!==null&&Math.abs(y-lastY)>3){lines.push(cur);cur=''}cur+=(cur&&!/\s$/.test(cur)?' ':'')+it.str;lastY=y});
+    lines.push(cur);
+   })})(p)}
+   return chain.then(function(){return {lines:lines.map(function(l){return l.replace(/\s+/g,' ').trim()}).filter(Boolean),pages:doc.numPages}});
+  });
+ }
+ f.addEventListener('change',function(){
+  ok=false;btn.disabled=true;hint.textContent='';st.textContent='';res.hidden=true;
+  var file=f.files[0];upSet(f,'');if(!file)return;
+  if(file.size>5*1024*1024){hint.style.color='#b42318';hint.textContent='File is too large. Maximum size is 5 MB.';f.value='';upSet(f,'');return}
+  file.slice(0,5).arrayBuffer().then(function(b){
+   if(String.fromCharCode.apply(null,new Uint8Array(b)).indexOf('%PDF')===0){ok=true;btn.disabled=false;upSet(f,file.name);hint.style.color='#0f7a5c';hint.textContent='File ready. Click Check my score.'}
+   else{hint.style.color='#b42318';hint.textContent='Please upload a PDF file.';f.value='';upSet(f,'')}
+  });
+ });
+ function level(n){return n>=90?['Excellent','#0f9f7a','Your resume covers almost everything recruiters look for. Review the tips below for final polish.']:n>=75?['Strong','#1e40d8','A solid resume. A few improvements below can lift it further.']:n>=50?['Good start','#d98a00','The basics are there. Work through the tips below to make it stand out.']:['Needs improvement','#d6402a','Several key items are missing. The tips below show what to fix first.']}
+ function count(el,to,color){
+  var g=document.getElementById('gfg');g.style.stroke=color;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  g.style.strokeDashoffset=326.7;void g.getBoundingClientRect();g.style.strokeDashoffset=326.7*(1-to/100);
+  if(reduce){el.textContent=to;return}
+  var t0=null;function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1200);el.textContent=Math.round(to*k);if(k<1)requestAnimationFrame(step)}requestAnimationFrame(step);
+ }
+ function chips(box,arr){box.textContent='';arr.forEach(function(w){var s=document.createElement('span');s.textContent=w;box.appendChild(s)})}
+ function show(r,low){
+  var L=level(r.total);
+  document.getElementById('gl').textContent=L[0];document.getElementById('gd').textContent=L[2];
+  var bd=document.getElementById('bd');bd.textContent='';
+  r.parts.forEach(function(p){
+   var row=document.createElement('div');row.className='bd-row';
+   var a=document.createElement('span');a.textContent=p.name;
+   var bar=document.createElement('div');bar.className='sbar';var i=document.createElement('i');bar.appendChild(i);
+   var e=document.createElement('em');e.textContent=p.got+'/'+p.max;
+   row.appendChild(a);row.appendChild(bar);row.appendChild(e);bd.appendChild(row);
+   setTimeout(function(){i.style.width=Math.round(p.got/p.max*100)+'%'},60);
+  });
+  var tp=document.getElementById('tp');tp.textContent='';
+  (r.tips.length?r.tips:['Great work! No major issues found. Tailor your resume to each job for the best results.']).forEach(function(t){var li=document.createElement('li');li.textContent=t;tp.appendChild(li)});
+  var jd=document.getElementById('jd'),jt=jdEl.value.trim();
+  if(jt){
+   var m=rsMatch(jt,low);
+   if(m.total<3){jd.hidden=false;document.getElementById('jm').textContent='';chips(document.getElementById('kf'),[]);chips(document.getElementById('km'),[]);document.getElementById('jm').textContent='Please paste a longer job description for a useful match.'}
+   else{jd.hidden=false;document.getElementById('jm').textContent=m.pct+'% match';chips(document.getElementById('kf'),m.hit.length?m.hit:['None found']);chips(document.getElementById('km'),m.miss.length?m.miss:['Nothing missing']);}
+  }else jd.hidden=true;
+  res.hidden=false;
+  count(document.getElementById('gn'),r.total,L[1]);
+  res.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'});
+ }
+ btn.addEventListener('click',function(){
+  if(!ok||!f.files[0])return;
+  btn.disabled=true;btn.textContent='Checking...';st.style.color='';st.textContent='Reading your resume...';res.hidden=true;
+  extract(f.files[0]).then(function(d){
+   var words=d.lines.join(' ').split(/\s+/).filter(Boolean).length;
+   if(words<80){st.style.color='#b42318';st.textContent='We could not read enough text from this PDF. It may be a scanned image. Please upload a text-based PDF (for example, exported from Word or Google Docs).';return}
+   st.textContent='';show(rsScore(d.lines,d.pages),d.lines.join('\n').toLowerCase());
+  }).catch(function(){
+   st.style.color='#b42318';st.textContent='Sorry, we could not read this file. Check your internet connection or try a different PDF.';
+  }).finally(function(){btn.textContent='Check my score';btn.disabled=!ok});
+ });
+})();
+
+function upSet(inp,name){
+ var z=inp.closest('.up');if(!z)return;
+ var b=z.querySelector('.u1'),o=z.querySelector('.u2');
+ if(name){b.textContent=name;z.classList.add('has')}else{b.textContent='Click to upload';z.classList.remove('has')}
+}
+(function(){
+ document.querySelectorAll('.up').forEach(function(z){
+  ['dragenter','dragover'].forEach(function(t){z.addEventListener(t,function(){z.classList.add('drag')})});
+  ['dragleave','drop','dragend'].forEach(function(t){z.addEventListener(t,function(){z.classList.remove('drag')})});
+ });
+})();
+
 </script>
 </body>
 </html>
