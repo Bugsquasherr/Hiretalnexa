@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Hiretalnexa Tracker</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--n:#0b1a33;--b:#1e40d8;--g:#0f9f7a;--bg:#f4f6fb;--line:#e1e6f0;--t:#17233b;--m:#5b677d;--r:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--t);font-size:15px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #7aa2ff;outline-offset:2px}
+[hidden]{display:none!important}
+.bt{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer;background:var(--b);color:#fff;white-space:nowrap}
+.bt:hover{filter:brightness(1.1)}.bt:disabled{opacity:.5;cursor:not-allowed}
+.bt.ghost{background:#fff;color:var(--t);border:1px solid var(--line)}
+.bt.red{background:#fff;color:#b42318;border:1px solid #f1c3be}
+.bt.sm{padding:5px 10px;font-size:.82rem}
+.bt.green{background:var(--g)}
+/* login */
+.lg{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#0b1a33,#16337a)}
+.lc{background:#fff;border-radius:18px;padding:34px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.lc .lo{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.lc .lo svg{height:34px;width:auto}
+.lc h1{font-size:1.25rem;line-height:1.2}.lc p.s{color:var(--m);font-size:.9rem;margin:6px 0 18px}
+label{display:grid;gap:5px;font-size:.84rem;font-weight:600}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #cfd7e6;border-radius:8px;background:#fff;font-weight:400;font-size:.95rem}
+input:focus,select:focus,textarea:focus{border-color:var(--b);outline:none;box-shadow:0 0 0 3px rgba(30,64,216,.14)}
+textarea{resize:vertical}
+.fm{display:grid;gap:14px}.pw{position:relative}.pw button{position:absolute;right:6px;top:25px;border:0;background:none;color:var(--b);font-weight:600;cursor:pointer;font-size:.8rem;padding:6px}
+.ck{display:flex;align-items:center;gap:8px;font-weight:500}.ck input{width:auto}
+.er{color:#b42318;font-size:.88rem;font-weight:600;min-height:1.2em}.lk{color:var(--b);font-size:.86rem;font-weight:600;background:none;border:0;cursor:pointer;justify-self:start}
+/* shell */
+.tb{position:sticky;top:0;z-index:20;background:var(--n);color:#fff;display:flex;align-items:center;gap:12px;padding:10px 18px}
+.tb .br{display:flex;align-items:center;gap:10px;font-weight:700}.tb .br svg{height:26px;width:auto;fill:#fff}.tb .br b{color:#6ea8ff}
+.tb .us{margin-left:auto;display:flex;align-items:center;gap:12px;font-size:.85rem;color:#c3cee4}
+.mbt{display:none;background:none;border:1px solid #3a4a6b;color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+.sh{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 54px)}
+.sn{background:#fff;border-right:1px solid var(--line);padding:14px 10px;display:grid;gap:4px;align-content:start}
+.sn button{text-align:left;border:0;background:none;padding:10px 12px;border-radius:8px;font-weight:600;color:var(--m);cursor:pointer}
+.sn button:hover{background:var(--bg)}.sn button.on{background:#eef2ff;color:var(--b)}
+main{padding:22px;min-width:0}
+.ph{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}.ph h2{font-size:1.4rem;margin-right:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:18px}
+.st{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px}.st b{font-size:1.8rem;display:block;line-height:1.1}.st span{color:var(--m);font-size:.84rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bx{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px}.bx h3{font-size:1rem;margin-bottom:12px}
+.bl{display:grid;grid-template-columns:140px 1fr 30px;gap:10px;align-items:center;margin-bottom:8px;font-size:.88rem}
+.bb{height:10px;background:#eef1f7;border-radius:99px;overflow:hidden}.bb i{display:block;height:100%;border-radius:99px;min-width:2px}
+.rc{display:flex;align-items:center;gap:10px;padding:9px 6px;border-bottom:1px solid var(--line);cursor:pointer;font-size:.9rem;flex-wrap:wrap}.rc:hover{background:var(--bg)}.rc span{color:var(--m)}.rc small{margin-left:auto;color:var(--m)}
+.tl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.tl input,.tl select{width:auto;min-width:150px}.tl input.q{min-width:220px}
+.tw{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.88rem}th{background:#f8f9fd;text-align:left;padding:10px 12px;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--m);white-space:nowrap}
+td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}tr[data-a]{cursor:pointer}tr[data-a]:hover td{background:#fafbff}
+td a{color:var(--b);font-weight:600}.em{padding:30px;text-align:center;color:var(--m);background:#fff;border:1px dashed var(--line);border-radius:var(--r)}
+.ac{display:flex;gap:6px;flex-wrap:wrap}
+.pl{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.78rem;font-weight:700;white-space:nowrap}
+.p0{background:#e8ecf5;color:#33415c}.p1{background:#e0ecff;color:#1d4ed8}.p2{background:#ece5ff;color:#6d28d9}.p3{background:#fff1d6;color:#a35a00}.p4{background:#e0f6ee;color:#0b6e57}.p5{background:#c9f2df;color:#066247}.p6{background:#fde7e5;color:#b42318}.p7{background:#eee;color:#555}
+.bb i.p0{background:#94a3c4}.bb i.p1{background:#3b82f6}.bb i.p2{background:#8b5cf6}.bb i.p3{background:#f59e0b}.bb i.p4{background:#10b981}.bb i.p5{background:#059669}.bb i.p6{background:#ef4444}.bb i.p7{background:#9ca3af}
+/* modal */
+.mo{position:fixed;inset:0;background:rgba(10,20,40,.55);display:grid;place-items:center;padding:16px;z-index:50;overflow:auto}
+.md{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:92vh;overflow:auto}.md.wide{max-width:760px}
+.mh{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}.mh h3{font-size:1.1rem}
+.x{border:0;background:none;font-size:1.6rem;cursor:pointer;color:var(--m);line-height:1}.mb{padding:20px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fg .full{grid-column:1/-1}
+.mf{display:flex;gap:10px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}.mf .l{margin-right:auto}
+.sm{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-size:.88rem;background:var(--bg);padding:12px;border-radius:10px;margin-bottom:14px}.sm span{color:var(--m)}.sm .full{grid-column:1/-1}
+.hs{font-size:.86rem;border-left:3px solid var(--line);padding-left:12px;display:grid;gap:8px;margin-top:8px}.hs small{color:var(--m)}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--n);color:#fff;padding:11px 18px;border-radius:10px;z-index:99;font-weight:600;max-width:90vw}.toast.bad{background:#b42318}
+.cn{max-width:520px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;text-align:center}
+@media(max-width:860px){.sh{grid-template-columns:1fr}.sn{display:none;border-right:0;border-bottom:1px solid var(--line)}.sn.open{display:grid}.mbt{display:block}.two{grid-template-columns:1fr}.tb .us span{display:none}main{padding:14px}}
+@media(max-width:520px){.fg,.sm{grid-template-columns:1fr}.bl{grid-template-columns:100px 1fr 28px}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="module">
+import {initializeApp,deleteApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,createUserWithEmailAndPassword,setPersistence,browserSessionPersistence,browserLocalPersistence} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {getFirestore,collection,doc,getDoc,getDocs,addDoc,setDoc,updateDoc,deleteDoc,query,where,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const cfg={apiKey:"AIzaSyDIzMNgSso1jg8tp2v-pZD66As9ajrNYuE",authDomain:"hiretalnexa-tracker.firebaseapp.com",projectId:"hiretalnexa-tracker",storageBucket:"hiretalnexa-tracker.firebasestorage.app",messagingSenderId:"1076318466382",appId:"1:1076318466382:web:2094a1b91f564ebfbd2e1f"};
+const app=initializeApp(cfg),auth=getAuth(app),db=getFirestore(app);
+
+const ST=['Sourced','Screened','Submitted to client','Interview','Offered','Joined','Rejected','On hold'];
+const CS=['Shortlisted','Interview requested','Selected','On hold','Rejected'];
+const active=s=>s!=='Joined'&&s!=='Rejected';
+const S={user:null,profile:null,clients:[],jobs:[],candidates:[],applications:[],users:[],myClient:{},view:'',pf:{}};
+const LOGO='<svg viewBox="0 0 139 99" aria-hidden="true"><path fill-rule="evenodd" d="M85.10,97.80 L86.40,97.75 L87.10,97.60 L87.52,97.30 L87.65,96.80 L87.53,96.40 L87.30,96.16 L85.10,95.14 L84.21,94.50 L83.50,93.74 L82.71,92.30 L82.39,90.70 L82.36,30.70 L82.45,29.70 L82.70,29.40 L83.20,29.59 L83.71,30.10 L88.08,36.60 L90.73,40.30 L103.06,58.40 L106.60,63.40 L110.07,68.60 L129.00,96.06 L129.60,96.66 L130.30,96.93 L131.00,96.83 L131.61,96.30 L131.81,95.80 L131.90,95.10 L131.90,71.70 L131.70,68.90 L131.70,9.90 L131.86,8.80 L132.19,7.60 L132.50,6.82 L133.00,5.99 L133.60,5.30 L134.60,4.59 L136.98,3.70 L137.21,3.20 L136.98,2.60 L136.50,2.24 L136.00,2.14 L126.70,2.15 L125.90,2.25 L125.40,2.45 L125.10,2.75 L124.95,3.10 L124.97,3.40 L125.20,3.70 L127.30,4.44 L128.33,5.10 L128.83,5.60 L129.50,6.52 L129.78,7.10 L130.07,8.30 L130.23,9.70 L130.29,67.50 L130.14,68.50 L129.70,68.93 L129.40,68.85 L128.99,68.40 L108.90,38.88 L105.40,33.97 L93.77,16.80 L89.49,10.70 L85.52,4.80 L85.34,4.30 L85.41,3.90 L85.64,3.50 L86.10,3.19 L86.80,3.02 L90.00,3.04 L93.60,3.37 L96.80,4.21 L99.30,5.20 L101.27,6.30 L103.69,8.00 L105.20,9.37 L106.60,10.91 L107.70,12.34 L108.71,14.00 L109.73,16.10 L110.60,18.50 L111.70,23.90 L112.00,24.50 L112.20,24.68 L112.50,24.75 L113.00,24.45 L113.29,23.70 L113.43,19.00 L113.38,3.40 L113.17,2.30 L112.60,1.68 L111.90,1.43 L110.90,1.32 L37.80,1.32 L36.80,1.46 L36.20,1.76 L35.76,2.40 L35.55,3.70 L35.55,19.60 L35.71,23.60 L36.00,24.30 L36.40,24.54 L36.80,24.38 L37.03,24.00 L37.58,20.80 L38.24,18.30 L39.21,15.80 L40.29,13.70 L41.47,11.90 L43.40,9.59 L44.70,8.38 L46.28,7.20 L49.40,5.34 L51.70,4.36 L55.30,3.41 L57.10,3.18 L58.10,3.35 L59.30,3.93 L61.10,4.52 L62.30,5.35 L63.39,6.80 L63.80,8.00 L63.95,10.00 L63.95,47.30 L63.83,48.30 L63.60,48.67 L63.20,48.91 L62.30,48.99 L23.80,49.01 L23.23,48.90 L22.85,48.70 L22.51,48.20 L22.40,47.30 L22.41,10.00 L22.49,8.50 L22.65,7.70 L23.00,6.80 L23.85,5.60 L24.30,5.18 L25.40,4.50 L27.32,3.80 L27.64,3.40 L27.60,3.03 L27.34,2.70 L26.90,2.42 L25.90,2.26 L2.80,2.27 L2.00,2.39 L1.46,2.70 L1.19,3.20 L1.23,3.50 L1.40,3.73 L3.50,4.52 L4.40,5.01 L4.90,5.40 L5.70,6.37 L6.10,7.20 L6.53,8.60 L6.67,10.90 L6.63,90.50 L6.40,92.07 L5.98,93.10 L5.50,93.90 L4.80,94.62 L4.10,95.16 L3.30,95.62 L2.00,96.10 L1.60,96.36 L1.36,97.00 L1.50,97.42 L2.10,97.75 L3.00,97.84 L26.20,97.85 L27.02,97.70 L27.52,97.30 L27.53,96.80 L27.20,96.27 L25.20,95.44 L24.20,94.71 L23.52,94.00 L22.83,92.80 L22.50,91.40 L22.42,89.00 L22.39,51.90 L22.50,51.50 L22.70,51.27 L23.30,51.02 L23.80,50.97 L62.70,50.96 L63.30,51.03 L63.70,51.25 L63.90,51.55 L63.97,52.00 L63.89,91.40 L63.48,93.00 L62.60,94.30 L61.60,95.02 L59.90,95.65 L59.28,96.00 L58.83,96.60 L58.83,97.30 L59.30,97.70 L60.50,97.84 L85.10,97.80Z"/></svg>';
+
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl=u=>/^https?:\/\//i.test(u||'')?u:'';
+const ms=t=>t&&t.toMillis?t.toMillis():0;
+const fmt=t=>{try{const d=t&&t.toDate?t.toDate():null;return d?d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):''}catch(e){return''}};
+const by=(a,id)=>a.find(x=>x.id===id)||{};
+const clean=o=>Object.fromEntries(Object.entries(o).map(([k,v])=>[k,v??'']));
+const pill=s=>`<span class="pl p${Math.max(0,ST.indexOf(s))}">${esc(s)}</span>`;
+const root=()=>$('#root');
+function toast(m,bad){const t=document.createElement('div');t.className='toast'+(bad?' bad':'');t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),4200)}
+function errText(e){const c=e&&e.code||'';if(c.includes('permission-denied'))return'Permission denied. Check that your account has a role and the security rules are published.';if(c.includes('unavailable')||c.includes('network'))return'Network problem. Please check your internet connection.';return(e&&e.message)||'Something went wrong.'}
+function modal(title,body,wide){const m=document.createElement('div');m.className='mo';m.innerHTML=`<div class="md${wide?' wide':''}" role="dialog" aria-modal="true"><div class="mh"><h3>${esc(title)}</h3><button class="x" aria-label="Close">&times;</button></div><div class="mb">${body}</div></div>`;document.body.appendChild(m);const close=()=>m.remove();$('.x',m).onclick=close;m.addEventListener('mousedown',e=>{if(e.target===m)close()});return{m,close}}
+function fld(f,v){const val=(v&&v[f.k])??f.def??'',id='f_'+f.k;let c;
+ if(f.t==='select')c=`<select id="${id}" ${f.req?'required':''}>${f.o.map(o=>{const a=Array.isArray(o)?o:[o,o];return`<option value="${esc(a[0])}" ${String(a[0])===String(val)?'selected':''}>${esc(a[1])}</option>`}).join('')}</select>`;
+ else if(f.t==='textarea')c=`<textarea id="${id}" rows="3">${esc(val)}</textarea>`;
+ else c=`<input id="${id}" type="${f.t||'text'}" value="${esc(val)}" ${f.req?'required':''} ${f.t==='password'?'minlength="8" autocomplete="new-password"':''}>`;
+ return`<label class="${f.full?'full':''}">${esc(f.l)}${f.req?' *':''}${c}</label>`}
+const formHtml=(fs,v)=>`<div class="fg">${fs.map(f=>fld(f,v)).join('')}</div>`;
+const readF=(r,fs)=>Object.fromEntries(fs.map(f=>[f.k,($('#f_'+f.k,r).value||'').trim()]));
+async function load(n){const s=await getDocs(collection(db,n));S[n]=s.docs.map(d=>({id:d.id,...d.data()}))}
+async function put(c,id,data){if(id){await updateDoc(doc(db,c,id),{...clean(data),updatedAt:serverTimestamp()});return id}const r=await addDoc(collection(db,c),{...clean(data),createdAt:serverTimestamp(),updatedAt:serverTimestamp()});return r.id}
+function csv(name,head,rows){const q=v=>{let s=String(v??'');if(/^[=@]|^[+\-](?!\d)/.test(s))s="'"+s;return'"'+s.replace(/"/g,'""')+'"'};const t='\ufeff'+[head,...rows].map(r=>r.map(q).join(',')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv;charset=utf-8'}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)}
+const tbl=(head,rows,empty)=>rows.length?`<div class="tw"><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`:`<div class="em">${empty||'Nothing here yet.'}</div>`;
+const ph=(t,a)=>`<div class="ph"><h2>${esc(t)}</h2>${a||''}</div>`;
+const main=h=>{$('#mn').innerHTML=h};
+const stat=(l,n)=>`<div class="st"><b>${n}</b><span>${esc(l)}</span></div>`;
+const link=u=>safeUrl(u)?`<a href="${esc(safeUrl(u))}" target="_blank" rel="noopener noreferrer">Open</a>`:'';
+
+/* ---------- login ---------- */
+function renderLogin(msg){
+ root().innerHTML=`<div class="lg"><form class="lc fm" id="lf" autocomplete="on"><div class="lo">${LOGO.replace('<svg','<svg fill="#0b1a33"')}<h1>Hiretalnexa <span style="color:#1e40d8">Tracker</span></h1></div><p class="s">Sign in to manage candidates and hiring updates.</p>
+ <label>Email<input id="em" type="email" required autocomplete="username"></label>
+ <div class="pw"><label>Password<input id="pw" type="password" required autocomplete="current-password"></label><button type="button" id="sp">Show</button></div>
+ <label class="ck"><input type="checkbox" id="kp"> Keep me signed in on this device</label>
+ <div class="er" id="er" role="alert">${esc(msg||'')}</div>
+ <button class="bt" id="sb" type="submit" style="justify-content:center">Sign in</button>
+ <button type="button" class="lk" id="fp">Forgot password?</button>
+ <p class="s" style="margin:0;font-size:.8rem">Authorised users only. Need access? Email hr@hiretalnexa.com</p></form></div>`;
+ $('#sp').onclick=()=>{const p=$('#pw');p.type=p.type==='password'?'text':'password';$('#sp').textContent=p.type==='password'?'Show':'Hide'};
+ $('#fp').onclick=async()=>{const e=$('#em').value.trim();if(!e){$('#er').textContent='Enter your email above first.';return}try{await sendPasswordResetEmail(auth,e)}catch(x){}$('#er').style.color='#0f7a5c';$('#er').textContent='If an account exists for that email, a reset link has been sent.'};
+ $('#lf').onsubmit=async ev=>{ev.preventDefault();const b=$('#sb');b.disabled=true;b.textContent='Signing in...';$('#er').style.color='';$('#er').textContent='';
+  try{await setPersistence(auth,$('#kp').checked?browserLocalPersistence:browserSessionPersistence);await signInWithEmailAndPassword(auth,$('#em').value.trim(),$('#pw').value)}
+  catch(e){const c=e.code||'';$('#er').textContent=c.includes('too-many')?'Too many attempts. Please wait a while or reset your password.':c.includes('network')?'Network problem. Check your connection.':'Incorrect email or password.';b.disabled=false;b.textContent='Sign in'}};
+}
+function renderBlock(title,text){root().innerHTML=`<div class="lg"><div class="cn"><h2>${esc(title)}</h2><p style="color:#5b677d;margin:10px 0 18px">${esc(text)}</p><button class="bt" id="so">Sign out</button></div></div>`;$('#so').onclick=()=>signOut(auth)}
+
+/* ---------- shell ---------- */
+const NAV={admin:[['dash','Dashboard'],['pipe','Pipeline'],['cands','Candidates'],['jobs','Jobs'],['clients','Clients'],['users','Users']],client:[['cdash','Overview'],['ccands','Candidates']]};
+const VIEWS={};
+function shell(){
+ const adm=S.profile.role==='admin';
+ root().innerHTML=`<header class="tb"><button class="mbt" id="mb" aria-label="Menu">&#9776;</button><div class="br">${LOGO}<span>Hiretalnexa <b>Tracker</b></span></div><div class="us"><span>${esc(S.profile.name||S.user.email)} &middot; ${adm?'Admin':esc(S.myClient.name||'Client')}</span><button class="bt ghost sm" id="lo">Sign out</button></div></header>
+ <div class="sh"><nav class="sn" id="sn">${NAV[S.profile.role].map(n=>`<button data-v="${n[0]}">${n[1]}</button>`).join('')}</nav><main id="mn"></main></div>`;
+ $('#lo').onclick=()=>signOut(auth);$('#mb').onclick=()=>$('#sn').classList.toggle('open');
+ $('#sn').onclick=e=>{const b=e.target.closest('[data-v]');if(b){go(b.dataset.v);$('#sn').classList.remove('open')}};
+ $('#mn').onclick=onAct;
+ go(adm?'dash':'cdash');
+}
+function go(v){S.view=v;document.querySelectorAll('#sn button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));VIEWS[v]();window.scrollTo(0,0)}
+async function onAct(e){const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,id=t.dataset.id;
+ try{const h=ACT[a];if(h)await h(id,t)}catch(x){toast(errText(x),true)}}
+const ACT={};
+
+/* ---------- admin: dashboard ---------- */
+VIEWS.dash=()=>{
+ const A=S.applications,cnt=s=>A.filter(a=>a.stage===s).length,max=Math.max(1,...ST.map(cnt));
+ const recent=[...A].sort((a,b)=>ms(b.updatedAt)-ms(a.updatedAt)).slice(0,8);
+ main(ph('Dashboard')+`<div class="cards">${stat('Active clients',S.clients.filter(c=>c.status!=='Inactive').length)}${stat('Open jobs',S.jobs.filter(j=>j.status==='Open').length)}${stat('Candidates',S.candidates.length)}${stat('In pipeline',A.filter(a=>active(a.stage)).length)}${stat('Joined',cnt('Joined'))}</div>
+ <div class="two"><section class="bx"><h3>Pipeline by stage</h3>${ST.map((s,i)=>`<div class="bl"><span>${esc(s)}</span><div class="bb"><i class="p${i}" style="width:${cnt(s)/max*100}%"></i></div><b>${cnt(s)}</b></div>`).join('')}</section>
+ <section class="bx"><h3>Recent updates</h3>${recent.length?recent.map(a=>`<div class="rc" data-a="app" data-id="${a.id}"><b>${esc(by(S.candidates,a.candidateId).name||'Candidate')}</b><span>${esc(by(S.jobs,a.jobId).title||'')}</span>${pill(a.stage)}<small>${fmt(a.updatedAt)}</small></div>`).join(''):'<div class="em">No activity yet.</div>'}</section></div>`);
+};
+
+/* ---------- admin: clients ---------- */
+const CLF=[{k:'name',l:'Company name',req:1},{k:'contactName',l:'Contact person'},{k:'email',l:'Contact email',t:'email'},{k:'phone',l:'Phone'},{k:'status',l:'Status',t:'select',o:['Active','Inactive']},{k:'notes',l:'Internal notes',t:'textarea',full:1}];
+VIEWS.clients=()=>{
+ main(ph('Clients','<button class="bt" data-a="addClient">+ Add client</button>')+tbl(['Company','Contact','Phone','Email','Status','Jobs','Actions'],S.clients.map(c=>`<tr><td><b>${esc(c.name)}</b></td><td>${esc(c.contactName)}</td><td>${esc(c.phone)}</td><td>${esc(c.email)}</td><td>${esc(c.status||'Active')}</td><td>${S.jobs.filter(j=>j.clientId===c.id).length}</td><td class="ac"><button class="bt ghost sm" data-a="editClient" data-id="${c.id}">Edit</button><button class="bt red sm" data-a="delClient" data-id="${c.id}">Delete</button></td></tr>`),'No clients yet. Add your first client.'));
+};
+function clientForm(id){const c=by(S.clients,id),{m,close}=modal(id?'Edit client':'Add client',`<form id="mf">${formHtml(CLF,id?c:{status:'Active'})}<div class="mf"><button type="button" class="bt ghost" id="cx">Cancel</button><button class="bt" type="submit">Save</button></div></form>`);
+ $('#cx',m).onclick=close;$('#mf',m).onsubmit=async e=>{e.preventDefault();try{await put('clients',id,readF(m,CLF));await load('clients');close();toast('Client saved');VIEWS.clients()}catch(x){toast(errText(x),true)}}}
+ACT.addClient=()=>clientForm();ACT.editClient=id=>clientForm(id);
+ACT.delClient=async id=>{if(S.jobs.some(j=>j.clientId===id)){toast('This client still has jobs. Delete or reassign them first.',true);return}if(!confirm('Delete this client?'))return;await deleteDoc(doc(db,'clients',id));await load('clients');VIEWS.clients()};
+
+/* ---------- admin: jobs ---------- */
+const jf=()=>[{k:'title',l:'Job title',req:1},{k:'clientId',l:'Client',t:'select',req:1,o:[['','Select client'],...S.clients.map(c=>[c.id,c.name])]},{k:'location',l:'Location'},{k:'experience',l:'Experience required'},{k:'skills',l:'Key skills',full:1},{k:'openings',l:'Openings',t:'number'},{k:'budget',l:'Budget / CTC range'},{k:'status',l:'Status',t:'select',o:['Open','On hold','Closed']},{k:'priority',l:'Priority',t:'select',o:['Normal','High','Urgent']},{k:'description',l:'Description',t:'textarea',full:1}];
+VIEWS.jobs=()=>{
+ main(ph('Jobs','<button class="bt" data-a="addJob">+ Add job</button>')+tbl(['Title','Client','Location','Openings','Status','Priority','In pipeline','Actions'],S.jobs.map(j=>`<tr><td><b>${esc(j.title)}</b><br><small>${esc(j.skills)}</small></td><td>${esc(by(S.clients,j.clientId).name)}</td><td>${esc(j.location)}</td><td>${esc(j.openings)}</td><td>${esc(j.status)}</td><td>${esc(j.priority)}</td><td>${S.applications.filter(a=>a.jobId===j.id).length}</td><td class="ac"><button class="bt ghost sm" data-a="jobPipe" data-id="${j.id}">Pipeline</button><button class="bt ghost sm" data-a="editJob" data-id="${j.id}">Edit</button><button class="bt red sm" data-a="delJob" data-id="${j.id}">Delete</button></td></tr>`),'No jobs yet. Add a client first, then a job.'));
+};
+function jobForm(id){if(!S.clients.length){toast('Add a client first.',true);return}const F=jf(),j=by(S.jobs,id),{m,close}=modal(id?'Edit job':'Add job',`<form id="mf">${formHtml(F,id?j:{status:'Open',priority:'Normal',openings:'1'})}<div class="mf"><button type="button" class="bt ghost" id="cx">Cancel</button><button class="bt" type="submit">Save</button></div></form>`,1);
+ $('#cx',m).onclick=close;$('#mf',m).onsubmit=async e=>{e.preventDefault();try{await put('jobs',id,readF(m,F));await load('jobs');close();toast('Job saved');VIEWS.jobs()}catch(x){toast(errText(x),true)}}}
+ACT.addJob=()=>jobForm();ACT.editJob=id=>jobForm(id);
+ACT.jobPipe=id=>{S.pf={job:id};go('pipe')};
+ACT.delJob=async id=>{if(S.applications.some(a=>a.jobId===id)){toast('This job has candidates in the pipeline. Remove them first or set the job to Closed.',true);return}if(!confirm('Delete this job?'))return;await deleteDoc(doc(db,'jobs',id));await load('jobs');VIEWS.jobs()};
+
+/* ---------- admin: candidates ---------- */
+const CF=[{k:'name',l:'Full name',req:1},{k:'phone',l:'Phone',req:1},{k:'email',l:'Email',t:'email'},{k:'location',l:'Current location'},{k:'skills',l:'Key skills',full:1},{k:'experience',l:'Total experience (years)'},{k:'noticePeriod',l:'Notice period'},{k:'currentCtc',l:'Current CTC'},{k:'expectedCtc',l:'Expected CTC'},{k:'source',l:'Source (e.g. Naukri, LinkedIn)'},{k:'resumeLink',l:'Resume link (Google Drive)',full:1},{k:'notes',l:'Internal notes',t:'textarea',full:1}];
+VIEWS.cands=()=>{
+ main(ph('Candidates','<button class="bt ghost" data-a="expCands">Export CSV</button><button class="bt" data-a="addCand">+ Add candidate</button>')+`<div class="tl"><input class="q" id="q" placeholder="Search name, skills, phone, location" aria-label="Search"></div><div id="tb"></div>`);
+ const fill=()=>{const q=($('#q').value||'').toLowerCase(),L=S.candidates.filter(c=>[c.name,c.skills,c.phone,c.email,c.location].join(' ').toLowerCase().includes(q)).sort((a,b)=>ms(b.createdAt)-ms(a.createdAt));
+  $('#tb').innerHTML=tbl(['Name','Contact','Skills','Exp','Expected CTC','Notice','Location','Resume','Actions'],L.slice(0,300).map(c=>`<tr><td><b>${esc(c.name)}</b></td><td>${esc(c.phone)}<br><small>${esc(c.email)}</small></td><td>${esc(c.skills)}</td><td>${esc(c.experience)}</td><td>${esc(c.expectedCtc)}</td><td>${esc(c.noticePeriod)}</td><td>${esc(c.location)}</td><td>${link(c.resumeLink)}</td><td class="ac"><button class="bt green sm" data-a="toJob" data-id="${c.id}">Add to job</button><button class="bt ghost sm" data-a="editCand" data-id="${c.id}">Edit</button><button class="bt red sm" data-a="delCand" data-id="${c.id}">Delete</button></td></tr>`),'No candidates found.')};
+ $('#q').oninput=fill;fill();
+};
+function candForm(id){const c=by(S.candidates,id),{m,close}=modal(id?'Edit candidate':'Add candidate',`<form id="mf">${formHtml(CF,id?c:{})}<div class="mf"><button type="button" class="bt ghost" id="cx">Cancel</button><button class="bt" type="submit">Save</button></div></form>`,1);
+ $('#cx',m).onclick=close;$('#mf',m).onsubmit=async e=>{e.preventDefault();try{const d=readF(m,CF);if(d.resumeLink&&!safeUrl(d.resumeLink)){toast('Resume link must start with http:// or https://',true);return}await put('candidates',id,d);await load('candidates');close();toast('Candidate saved');VIEWS.cands()}catch(x){toast(errText(x),true)}}}
+ACT.addCand=()=>candForm();ACT.editCand=id=>candForm(id);
+ACT.delCand=async id=>{if(S.applications.some(a=>a.candidateId===id)){toast('This candidate is in the pipeline. Remove those entries first.',true);return}if(!confirm('Delete this candidate?'))return;await deleteDoc(doc(db,'candidates',id));await load('candidates');VIEWS.cands()};
+ACT.expCands=()=>csv('candidates.csv',['Name','Phone','Email','Location','Skills','Experience','Notice period','Current CTC','Expected CTC','Source','Resume link','Notes'],S.candidates.map(c=>[c.name,c.phone,c.email,c.location,c.skills,c.experience,c.noticePeriod,c.currentCtc,c.expectedCtc,c.source,c.resumeLink,c.notes]));
+ACT.toJob=id=>{const c=by(S.candidates,id),jobs=S.jobs.filter(j=>j.status==='Open');if(!jobs.length){toast('No open jobs. Add a job first.',true);return}
+ const{m,close}=modal('Add '+c.name+' to a job',`<form id="mf" class="fm"><label>Job<select id="jb">${jobs.map(j=>`<option value="${j.id}">${esc(j.title)} - ${esc(by(S.clients,j.clientId).name)}</option>`).join('')}</select></label><label>Starting stage<select id="sg">${ST.map(s=>`<option>${esc(s)}</option>`).join('')}</select></label><div class="mf"><button type="button" class="bt ghost" id="cx">Cancel</button><button class="bt" type="submit">Add to pipeline</button></div></form>`);
+ $('#cx',m).onclick=close;$('#mf',m).onsubmit=async e=>{e.preventDefault();const jid=$('#jb',m).value,j=by(S.jobs,jid);
+  if(S.applications.some(a=>a.candidateId===id&&a.jobId===jid)){toast('This candidate is already in that job\'s pipeline.',true);return}
+  try{const stage=$('#sg',m).value,aid=await put('applications',null,{candidateId:id,jobId:jid,clientId:j.clientId,stage,sharedWithClient:false,shared:{},clientStatus:'',clientFeedback:''});
+   await addDoc(collection(db,'applications',aid,'history'),{stage,note:'Added to pipeline',by:S.profile.name||S.user.email,at:serverTimestamp()});
+   await load('applications');close();toast('Added to pipeline')}catch(x){toast(errText(x),true)}}};
+
+/* ---------- admin: pipeline ---------- */
+VIEWS.pipe=()=>{
+ const pf=S.pf||{};
+ main(ph('Pipeline','<button class="bt ghost" data-a="expPipe">Export CSV</button>')+`<div class="tl"><select id="fc" aria-label="Client"><option value="">All clients</option>${S.clients.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><select id="fj" aria-label="Job"><option value="">All jobs</option>${S.jobs.map(j=>`<option value="${j.id}" ${pf.job===j.id?'selected':''}>${esc(j.title)}</option>`).join('')}</select><select id="fs" aria-label="Stage"><option value="">All stages</option>${ST.map(s=>`<option>${esc(s)}</option>`).join('')}</select><input class="q" id="q" placeholder="Search candidate" aria-label="Search"></div><div id="tb"></div>`);
+ S.pf={};
+ const rows=()=>{const c=$('#fc').value,j=$('#fj').value,s=$('#fs').value,q=$('#q').value.toLowerCase();return S.applications.filter(a=>(!c||a.clientId===c)&&(!j||a.jobId===j)&&(!s||a.stage===s)&&(!q||(by(S.candidates,a.candidateId).name||'').toLowerCase().includes(q))).sort((a,b)=>ms(b.updatedAt)-ms(a.updatedAt))};
+ const fill=()=>{$('#tb').innerHTML=tbl(['Candidate','Job','Client','Stage','Shared','Client status','Updated'],rows().map(a=>`<tr data-a="app" data-id="${a.id}"><td><b>${esc(by(S.candidates,a.candidateId).name||'(removed)')}</b></td><td>${esc(by(S.jobs,a.jobId).title)}</td><td>${esc(by(S.clients,a.clientId).name)}</td><td>${pill(a.stage)}</td><td>${a.sharedWithClient?'Yes':'No'}</td><td>${esc(a.clientStatus)}</td><td>${fmt(a.updatedAt)}</td></tr>`),'No pipeline entries match. Add candidates to jobs from the Candidates page.')};
+ ['fc','fj','fs'].forEach(i=>$('#'+i).onchange=fill);$('#q').oninput=fill;fill();
+ S.pipeRows=rows;
+};
+ACT.expPipe=()=>{const L=S.pipeRows?S.pipeRows():S.applications;csv('pipeline.csv',['Candidate','Job','Client','Stage','Shared with client','Client status','Client feedback','Updated'],L.map(a=>[by(S.candidates,a.candidateId).name,by(S.jobs,a.jobId).title,by(S.clients,a.clientId).name,a.stage,a.sharedWithClient?'Yes':'No',a.clientStatus,a.clientFeedback,fmt(a.updatedAt)]))};
+ACT.app=async id=>{
+ const a=by(S.applications,id),c=by(S.candidates,a.candidateId),j=by(S.jobs,a.jobId),cl=by(S.clients,a.clientId);
+ const{m,close}=modal(c.name||'Pipeline entry',`<div class="sm"><div><span>Job</span><br>${esc(j.title)}</div><div><span>Client</span><br>${esc(cl.name)}</div><div><span>Phone</span><br>${esc(c.phone)}</div><div><span>Email</span><br>${esc(c.email)}</div><div><span>Experience / Notice</span><br>${esc(c.experience)} / ${esc(c.noticePeriod)}</div><div><span>Current / Expected CTC</span><br>${esc(c.currentCtc)} / ${esc(c.expectedCtc)}</div><div class="full"><span>Skills</span><br>${esc(c.skills)}</div><div><span>Resume</span><br>${link(c.resumeLink)||'-'}</div><div><span>Client feedback</span><br>${esc(a.clientStatus)||'-'} ${a.clientFeedback?'<br><small>'+esc(a.clientFeedback)+'</small>':''}</div></div>
+ <form id="mf"><div class="fg"><label>Stage<select id="sg">${ST.map(s=>`<option ${s===a.stage?'selected':''}>${esc(s)}</option>`).join('')}</select></label><label class="ck" style="align-self:end"><input type="checkbox" id="sh" ${a.sharedWithClient?'checked':''}> Share with client</label><label class="full">Update note (internal, saved in history)<textarea id="nt" rows="2"></textarea></label><label class="full">Note for client (shown only if shared)<textarea id="cn" rows="2">${esc((a.shared||{}).note||'')}</textarea></label></div>
+ <div class="mf"><button type="button" class="bt red l" id="rm">Remove from pipeline</button><button type="button" class="bt ghost" id="cx">Close</button><button class="bt" type="submit">Save update</button></div></form><h4 style="margin-top:14px">History</h4><div class="hs" id="hs">Loading...</div>`,1);
+ $('#cx',m).onclick=close;
+ const hist=async()=>{try{const s=await getDocs(collection(db,'applications',id,'history'));const L=s.docs.map(d=>d.data()).sort((x,y)=>ms(y.at)-ms(x.at));$('#hs',m).innerHTML=L.length?L.map(h=>`<div><b>${esc(h.stage)}</b> <small>${fmt(h.at)} by ${esc(h.by)}</small>${h.note?'<br>'+esc(h.note):''}</div>`).join(''):'No history yet.'}catch(x){$('#hs',m).textContent='Could not load history.'}};hist();
+ $('#rm',m).onclick=async()=>{if(!confirm('Remove this entry from the pipeline?'))return;try{await deleteDoc(doc(db,'applications',id));await load('applications');close();VIEWS[S.view]()}catch(x){toast(errText(x),true)}};
+ $('#mf',m).onsubmit=async e=>{e.preventDefault();try{const stage=$('#sg',m).value,share=$('#sh',m).checked,note=$('#nt',m).value.trim(),cn=$('#cn',m).value.trim(),changed=stage!==a.stage;
+  const upd={stage,sharedWithClient:share,shared:clean({name:c.name,skills:c.skills,experience:c.experience,location:c.location,noticePeriod:c.noticePeriod,expectedCtc:c.expectedCtc,resumeLink:c.resumeLink,note:cn})};
+  await put('applications',id,upd);
+  if(changed||note)await addDoc(collection(db,'applications',id,'history'),{stage,note:note||(changed?'Stage updated':''),by:S.profile.name||S.user.email,at:serverTimestamp()});
+  await load('applications');toast('Updated');close();VIEWS[S.view]()}catch(x){toast(errText(x),true)}};
+};
+
+/* ---------- admin: users ---------- */
+VIEWS.users=()=>{
+ main(ph('Users','<button class="bt" data-a="addUser">+ Add user</button>')+tbl(['Name','Email','Role','Client','Actions'],S.users.map(u=>`<tr><td><b>${esc(u.name)}</b></td><td>${esc(u.email)}</td><td>${esc(u.role)}</td><td>${esc(by(S.clients,u.clientId).name)}</td><td class="ac"><button class="bt ghost sm" data-a="resetUser" data-id="${u.id}">Send reset email</button>${u.id===S.user.uid?'':`<button class="bt red sm" data-a="delUser" data-id="${u.id}">Remove access</button>`}</td></tr>`),'No users.')+'<p style="color:#5b677d;font-size:.84rem;margin-top:10px">Removing access blocks the person from all data. To fully delete a login, remove it in Firebase Authentication as well.</p>');
+};
+ACT.resetUser=async id=>{const u=by(S.users,id);await sendPasswordResetEmail(auth,u.email);toast('Reset email sent to '+u.email)};
+ACT.delUser=async id=>{if(!confirm('Remove this person\'s access?'))return;await deleteDoc(doc(db,'users',id));await load('users');VIEWS.users()};
+ACT.addUser=()=>{const F=[{k:'name',l:'Full name',req:1},{k:'email',l:'Email',t:'email',req:1},{k:'password',l:'Temporary password (min 8 characters)',t:'password',req:1,full:1},{k:'role',l:'Role',t:'select',o:[['client','Client'],['admin','Admin']]},{k:'clientId',l:'Client company (for client role)',t:'select',o:[['','Select client'],...S.clients.map(c=>[c.id,c.name])]}];
+ const{m,close}=modal('Add user',`<form id="mf">${formHtml(F,{role:'client'})}<p style="color:#5b677d;font-size:.84rem;margin-top:10px">Share the temporary password privately and ask the person to use Forgot password to set their own.</p><div class="mf"><button type="button" class="bt ghost" id="cx">Cancel</button><button class="bt" type="submit">Create user</button></div></form>`);
+ $('#cx',m).onclick=close;$('#mf',m).onsubmit=async e=>{e.preventDefault();const d=readF(m,F);
+  if(d.role==='client'&&!d.clientId){toast('Select the client company.',true);return}
+  const sec=initializeApp(cfg,'sec'+Date.now());
+  try{const sa=getAuth(sec),cr=await createUserWithEmailAndPassword(sa,d.email,d.password);await signOut(sa);
+   await setDoc(doc(db,'users',cr.user.uid),{name:d.name,email:d.email,role:d.role,clientId:d.role==='client'?d.clientId:'',createdAt:serverTimestamp()});
+   await load('users');close();toast('User created');VIEWS.users()}
+  catch(x){toast((x.code||'').includes('email-already')?'That email already has a login.':errText(x),true)}
+  finally{deleteApp(sec).catch(()=>{})}}};
+
+/* ---------- client panel ---------- */
+VIEWS.cdash=()=>{
+ const A=S.applications,cnt=s=>A.filter(a=>a.stage===s).length;
+ main(ph('Welcome, '+(S.myClient.name||'Client'))+`<div class="cards">${stat('Open jobs',S.jobs.filter(j=>j.status==='Open').length)}${stat('Candidates shared',A.length)}${stat('In interview',cnt('Interview'))}${stat('Offered',cnt('Offered'))}${stat('Joined',cnt('Joined'))}</div>`+'<h3 style="margin-bottom:10px">Your jobs</h3>'+tbl(['Title','Location','Openings','Status','Candidates shared'],S.jobs.map(j=>`<tr><td><b>${esc(j.title)}</b><br><small>${esc(j.skills)}</small></td><td>${esc(j.location)}</td><td>${esc(j.openings)}</td><td>${esc(j.status)}</td><td>${A.filter(a=>a.jobId===j.id).length}</td></tr>`),'No jobs have been added for you yet.'));
+};
+VIEWS.ccands=()=>{
+ main(ph('Candidates')+tbl(['Candidate','Job','Experience','Skills','Location','Notice','Expected CTC','Resume','Stage','Your status'],S.applications.sort((a,b)=>ms(b.updatedAt)-ms(a.updatedAt)).map(a=>{const s=a.shared||{};return`<tr data-a="review" data-id="${a.id}"><td><b>${esc(s.name)}</b></td><td>${esc(by(S.jobs,a.jobId).title)}</td><td>${esc(s.experience)}</td><td>${esc(s.skills)}</td><td>${esc(s.location)}</td><td>${esc(s.noticePeriod)}</td><td>${esc(s.expectedCtc)}</td><td>${link(s.resumeLink)}</td><td>${pill(a.stage)}</td><td>${esc(a.clientStatus)}</td></tr>`}),'No candidates have been shared with you yet.'));
+};
+ACT.review=id=>{const a=by(S.applications,id),s=a.shared||{};
+ const{m,close}=modal(s.name||'Candidate',`<div class="sm"><div><span>Job</span><br>${esc(by(S.jobs,a.jobId).title)}</div><div><span>Stage</span><br>${pill(a.stage)}</div><div><span>Experience</span><br>${esc(s.experience)}</div><div><span>Notice period</span><br>${esc(s.noticePeriod)}</div><div><span>Location</span><br>${esc(s.location)}</div><div><span>Expected CTC</span><br>${esc(s.expectedCtc)}</div><div class="full"><span>Skills</span><br>${esc(s.skills)}</div><div class="full"><span>Note from Hiretalnexa</span><br>${esc(s.note)||'-'}</div><div><span>Resume</span><br>${link(s.resumeLink)||'-'}</div></div>
+ <form id="mf"><div class="fg"><label class="full">Your decision<select id="cs"><option value="">Not decided</option>${CS.map(x=>`<option ${x===a.clientStatus?'selected':''}>${esc(x)}</option>`).join('')}</select></label><label class="full">Feedback for Hiretalnexa<textarea id="fb" rows="3">${esc(a.clientFeedback)}</textarea></label></div><div class="mf"><button type="button" class="bt ghost" id="cx">Close</button><button class="bt" type="submit">Save</button></div></form>`,1);
+ $('#cx',m).onclick=close;$('#mf',m).onsubmit=async e=>{e.preventDefault();try{await updateDoc(doc(db,'applications',id),{clientStatus:$('#cs',m).value,clientFeedback:$('#fb',m).value.trim(),clientUpdatedAt:serverTimestamp()});await loadClient();close();toast('Saved');VIEWS.ccands()}catch(x){toast(errText(x),true)}}};
+
+/* ---------- boot ---------- */
+async function loadClient(){const cid=S.profile.clientId;
+ const[cl,j,a]=await Promise.all([getDoc(doc(db,'clients',cid)),getDocs(query(collection(db,'jobs'),where('clientId','==',cid))),getDocs(query(collection(db,'applications'),where('clientId','==',cid),where('sharedWithClient','==',true)))]);
+ S.myClient=cl.exists()?cl.data():{};S.jobs=j.docs.map(d=>({id:d.id,...d.data()}));S.applications=a.docs.map(d=>({id:d.id,...d.data()}))}
+onAuthStateChanged(auth,async u=>{
+ if(!u){S.user=null;S.profile=null;renderLogin();return}
+ S.user=u;root().innerHTML='<div class="lg"><div class="cn"><p>Loading...</p></div></div>';
+ try{const p=await getDoc(doc(db,'users',u.uid));
+  if(!p.exists()||!['admin','client'].includes(p.data().role)||(p.data().role==='client'&&!p.data().clientId)){renderBlock('No access yet','Your login is not linked to a role. Please contact Hiretalnexa to get access.');return}
+  S.profile=p.data();
+  if(S.profile.role==='admin')await Promise.all(['clients','jobs','candidates','applications','users'].map(load));else await loadClient();
+  shell()}
+ catch(e){renderBlock('Could not load',errText(e))}
+});
+let idle;const bump=()=>{clearTimeout(idle);if(auth.currentUser)idle=setTimeout(()=>signOut(auth),30*60*1000)};
+['click','keydown','mousemove','touchstart'].forEach(ev=>addEventListener(ev,bump,{passive:true}));
+
+</script>
+</body>
+</html>
