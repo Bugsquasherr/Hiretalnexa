@@ -100,6 +100,8 @@ input[aria-invalid=true],textarea[aria-invalid=true],select[aria-invalid=true]{b
 .bn{background:#eef2ff;border:1px solid #cfdcff;border-radius:var(--r);padding:18px;margin-bottom:16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}.bn b{margin-right:auto}
 .cr{background:var(--bg);border-radius:10px;padding:12px;margin:8px 0;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;word-break:break-all}
 .pre{white-space:pre-wrap;word-break:break-word}
+.pb{border:0;background:none;cursor:pointer;padding:2px;border-radius:99px;display:inline-flex;align-items:center;gap:3px;color:var(--m)}
+.pb:hover .pl{box-shadow:0 0 0 2px #cfdcff}.pb:hover .cr2{color:var(--b)}.cr2{font-size:.7rem}
 </style>
 </head>
 <body>
@@ -334,21 +336,22 @@ const DET=[['Client',(c,j,cl)=>cl.name],['Job',(c,j)=>(j.jobCode||'')+(j.title?'
 const detHtml=c=>{const j=by(S.jobs,c.jobId),cl=by(S.clients,c.clientId);return`<div class="sm">${DET.map(([l,k])=>{const v=typeof k==='function'?k(c,j,cl):c[k];return v?`<div class="${/comments/i.test(l)?'full':''}"><span>${esc(l)}</span><br>${esc(v)}</div>`:''}).join('')}<div><span>Resume</span><br>${resBtn(c.resumeFileId,'')||'-'}</div></div>`};
 VIEWS.cands=()=>{
  main(ph('Candidates','<button class="bt ghost" data-a="expCands">Export CSV</button><button class="bt" data-a="addCand">+ Add candidate</button>')+`<div class="tl"><input class="q" id="q" placeholder="Search name, phone, resume no, job code, skill" aria-label="Search"><select id="fc" aria-label="Client"><option value="">All clients</option>${S.clients.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><select id="fs" aria-label="Status"><option value="">All statuses</option>${ST.map(s=>`<option>${esc(s)}</option>`).join('')}</select></div><div id="tb"></div>`);
- const fill=()=>{const q=($('#q').value||'').toLowerCase(),fc=$('#fc').value,fs=$('#fs').value;
+ const cf0=S.cf||{};$('#q').value=cf0.q||'';$('#fc').value=cf0.fc||'';$('#fs').value=cf0.fs||'';
+ const fill=()=>{const q=($('#q').value||'').toLowerCase(),fc=$('#fc').value,fs=$('#fs').value;S.cf={q:$('#q').value,fc,fs};
   const L=S.candidates.filter(c=>(!fc||c.clientId===fc)&&(!fs||c.finalStatus===fs)&&[c.name,c.phone,c.email,c.resumeNo,c.essentialSkill,c.currentLocation,by(S.jobs,c.jobId).jobCode].join(' ').toLowerCase().includes(q)).sort((a,b)=>ms(b.createdAt)-ms(a.createdAt));
-  $('#tb').innerHTML=tbl(['Resume no','Name','Client','Job code','Contact','IT exp','Location','Notice','Status','Joining','Resume','Actions'],L.slice(0,300).map(c=>`<tr><td>${esc(c.resumeNo)}</td><td><b>${esc(c.name)}</b></td><td>${esc(by(S.clients,c.clientId).name)}</td><td>${esc(by(S.jobs,c.jobId).jobCode||c.jobCode)}</td><td>${c.phone?'+91 '+esc(c.phone):''}<br><small>${esc(c.email)}</small></td><td>${esc(c.totalItExp)}</td><td>${esc(c.currentLocation||c.location)}</td><td>${esc(c.noticePeriod)}</td><td>${c.finalStatus?pill(c.finalStatus):''}</td><td>${esc(c.joiningDate)}</td><td>${resBtn(c.resumeFileId,'')||link(c.resumeLink)}</td><td class="ac">${ib('viewCand',c.id,'eye','View details')}${ib('editCand',c.id,'edit','Edit candidate')}${isAdm()?ib('delCand',c.id,'trash','Delete candidate','red'):''}</td></tr>`),'No candidates found.')};
+  $('#tb').innerHTML=tbl(['Resume no','Name','Client','Job code','Contact','IT exp','Location','Notice','Status','Joining','Resume','Actions'],L.slice(0,300).map(c=>`<tr><td>${esc(c.resumeNo)}</td><td><b>${esc(c.name)}</b></td><td>${esc(by(S.clients,c.clientId).name)}</td><td>${esc(by(S.jobs,c.jobId).jobCode||c.jobCode)}</td><td>${c.phone?'+91 '+esc(c.phone):''}<br><small>${esc(c.email)}</small></td><td>${esc(c.totalItExp)}</td><td>${esc(c.currentLocation||c.location)}</td><td>${esc(c.noticePeriod)}</td><td><button class="pb" data-a="quickStatus" data-id="${c.id}" title="Click to update status">${c.finalStatus?pill(c.finalStatus):'<span class="pl p0">Set status</span>'}<span class="cr2">&#9662;</span></button></td><td>${esc(c.joiningDate)}</td><td>${resBtn(c.resumeFileId,'')||link(c.resumeLink)}</td><td class="ac">${ib('viewCand',c.id,'eye','View details')}${ib('editCand',c.id,'edit','Edit candidate')}${isAdm()?ib('delCand',c.id,'trash','Delete candidate','red'):''}</td></tr>`),'No candidates found.')};
  $('#q').oninput=fill;$('#fc').onchange=fill;$('#fs').onchange=fill;fill();
 };
-async function syncApp(cid,d){const a=S.applications.find(x=>x.candidateId===cid&&x.jobId===d.jobId),stage=d.finalStatus||'Sourced',by2=S.profile.name||S.user.email;
- if(!a){const aid=await put('applications',null,{candidateId:cid,jobId:d.jobId,clientId:d.clientId,stage,sharedWithClient:false,shared:{},clientStatus:'',clientFeedback:''});await addDoc(collection(db,'applications',aid,'history'),{stage,note:'Added from candidate record',by:by2,at:serverTimestamp()})}
- else if(a.stage!==stage){await put('applications',a.id,{stage});await addDoc(collection(db,'applications',a.id,'history'),{stage,note:'Updated from candidate record',by:by2,at:serverTimestamp()})}}
+async function syncApp(cid,d,note){const a=S.applications.find(x=>x.candidateId===cid&&x.jobId===d.jobId),stage=d.finalStatus||'Sourced',by2=S.profile.name||S.user.email;
+ if(!a){const aid=await put('applications',null,{candidateId:cid,jobId:d.jobId,clientId:d.clientId,stage,sharedWithClient:false,shared:{},clientStatus:'',clientFeedback:''});await addDoc(collection(db,'applications',aid,'history'),{stage,note:note||'Added from candidate record',by:by2,at:serverTimestamp()})}
+ else if(a.stage!==stage||note){if(a.stage!==stage)await put('applications',a.id,{stage});await addDoc(collection(db,'applications',a.id,'history'),{stage,note:note||'Updated from candidate record',by:by2,at:serverTimestamp()})}}
 function candForm(id){
  if(!S.clients.length){toast('Add a client first.',true);return}
  const c=by(S.candidates,id),old=c.resumeFileId||'';
  const{m}=formModal(id?'Edit candidate':'Add candidate',cf(c.clientId,c.joiningDate),id?c:{finalStatus:'Sourced'},async(d,close,mm)=>{
   const job=by(S.jobs,d.jobId);d.jobCode=job.jobCode||'';let info={};const f=mm._file;
   if(f){if(!RESUME_URL){toast('Resume upload is not set up yet. Save without a resume or finish the setup.',true);return}
-   const j=await rcall({action:'upload',filename:f.name,data:await b64(f)});info={resumeFileId:j.id,resumeName:f.name}}
+   const j=await rcall({action:'upload',filename:f.name,data:await b64(f),client:by(S.clients,d.clientId).name||'',job:job.jobCode||'',candidate:d.name||''});info={resumeFileId:j.id,resumeName:f.name}}
   if(!id){d.addedBy=S.user.uid;d.addedByName=S.profile.name||S.user.email}
   const cid=await put('candidates',id,{...d,...info});
   await syncApp(cid,d);
@@ -363,6 +366,13 @@ function candForm(id){
   const h=new Uint8Array(await f.slice(0,4).arrayBuffer()),isPdf=h[0]===37&&h[1]===80&&h[2]===68&&h[3]===70,isZip=h[0]===80&&h[1]===75,isDoc=h[0]===208&&h[1]===207;
   const ext=f.name.split('.').pop().toLowerCase();if((ext==='pdf'&&!isPdf)||(ext==='docx'&&!isZip)||(ext==='doc'&&!isDoc)){er.textContent='This file does not look like a valid '+ext.toUpperCase()+' file.';e.target.value='';return}
   m._file=f}};
+ACT.quickStatus=id=>{const c=by(S.candidates,id),cur=c.finalStatus||'Sourced';
+ const{m,close}=modal('Update status - '+(c.name||''),`<form id="mf" class="fm" novalidate><label>Status<select id="qs">${ST.map(s=>`<option ${s===cur?'selected':''}>${esc(s)}</option>`).join('')}</select></label><label id="jw" ${cur==='Joined'?'':'hidden'}>Date of joining<input type="date" id="qd" min="${todayISO()}" value="${esc(c.joiningDate||todayISO())}"><small class="fe"></small></label><label>Note (optional, saved in history)<textarea id="qn" rows="2" maxlength="500"></textarea><small class="fe"></small></label><div class="mf"><button type="button" class="bt ghost" id="cx">Cancel</button><button class="bt" type="submit">Update status</button></div></form>`);
+ $('#cx',m).onclick=close;$('#qs',m).onchange=e=>{$('#jw',m).hidden=e.target.value!=='Joined'};
+ $('#mf',m).onsubmit=async e=>{e.preventDefault();const stage=$('#qs',m).value,rn=$('#qn',m).value,jd=$('#qd',m).value;showErr($('#qn',m),'');showErr($('#qd',m),'');
+  if(rn&&!rn.trim()){showErr($('#qn',m),'Cannot contain only spaces.');return}
+  if(stage==='Joined'){if(!jd){showErr($('#qd',m),'Select the joining date.');return}if(jd<todayISO()&&jd!==c.joiningDate){showErr($('#qd',m),'Past dates are not allowed.');return}}
+  await busy($('button[type=submit]',m),async()=>{try{const upd={finalStatus:stage};if(stage==='Joined')upd.joiningDate=jd;await put('candidates',id,upd);await syncApp(id,{...c,...upd},rn.trim());await Promise.all([load('candidates'),load('applications')]);close();toast('Status updated');VIEWS.cands()}catch(x){toast(errText(x),true)}},'Updating...')}};
 ACT.addCand=()=>candForm();ACT.editCand=id=>candForm(id);
 ACT.viewCand=id=>{const c=by(S.candidates,id),{m,close}=modal(c.name||'Candidate',`${detHtml(c)}<div class="mf"><button class="bt ghost" id="cx">Close</button></div>`,1);$('#cx',m).onclick=close};
 ACT.delCand=async id=>{if(!await confirmBox('Delete this candidate and their pipeline entries?','Delete'))return;
